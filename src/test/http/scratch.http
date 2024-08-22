@@ -1,0 +1,12 @@
+### create user
+POST localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "account": "account1",
+  "email": "user1@gmail.com",
+  "phoneNumber": "01012345678"
+}
+
+### get user
+GET localhost:8080/api/user/1
