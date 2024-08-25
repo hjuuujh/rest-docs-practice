@@ -487,10 +487,23 @@ Host: localhost:8080</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
 Content-Type: application/json
-Content-Length: 168
+Content-Length: 224
 
-{"resultCode":"OK","data":{"id":1,"account":"account1","email":"user1@gmail.com","phoneNumber":"01012345678","createdAt":"2024-08-22T22:58:46.991353","updatedAt":null}}</code></pre>
+{
+  "resultCode" : "OK",
+  "data" : {
+    "id" : 1,
+    "account" : "account1",
+    "email" : "user1@gmail.com",
+    "phoneNumber" : "01012345678",
+    "createdAt" : "2024-08-25T15:00:02.458647",
+    "updatedAt" : null
+  }
+}</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">

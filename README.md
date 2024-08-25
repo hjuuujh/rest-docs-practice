@@ -66,3 +66,14 @@
   5. Swagger 장점
      - API 테스트 UI를 제공
   6. MSA 환경 등 여러 API 문서를 한곳에서 조회 가능 
+## Docker 이용해 swagger 띄움
+- 관련 설정파일 추가 필요 : /config/WebConfig
+```
+docker run -p 80:8080 \
+-e URLS="[
+    { url: 'http://localhost:8080/docs/openapi3.yaml', name: 'user'},
+    { url: 'http://petstore.swagger.op/v2/swagger.json', name: 'sample'}
+]" \
+-v /tmp/swagger:/usr/share/nginx/html/docs/ \
+swaggerapi/swagger-ui
+```

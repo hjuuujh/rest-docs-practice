@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id "org.asciidoctor.jvm.convert" version "3.3.2"
+    id 'com.epages.restdocs-api-spec' version '0.16.0'
 }
 
 group = 'com.zerobase'
@@ -45,6 +46,8 @@ dependencies {
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     runtimeOnly 'mysql:mysql-connector-java:8.0.22'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.16.2'
+
 }
 
 tasks.named('test') {
@@ -64,4 +67,19 @@ task copyDocument(type: Copy) {
 
 build {
     dependsOn copyDocument
+}
+
+// 이걸 실행하면 build/api-spec 이생김
+// 이렇게 생긴 파일을 swagger에서 읽으면 됨
+openapi3 {
+    server = 'http://localhost:8080'
+    title = 'My API'
+    description = 'My API description'
+    version = '0.1.0'
+    format = 'yaml'
+
+    copy{
+        from file("build/api-spec")
+        into file("src/main/resources/static/docs")
+    }
 }
